@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	function A() {
+		this.class = 'A';
+
+	}
+	function B() {
+		this.class = 'B';
+	}
+
+	A.prototype.b = function() {
+		this.x = 1;
+		return this;
+	}
+
+	var a = new A();
+	var b = new B();
+	var ab = new A().b();
+
+</script>
+</body>
+</html>
