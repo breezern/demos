@@ -9,58 +9,77 @@
 			margin:0;
 			box-sizing: border-box;
 		}
-		.list {
-			list-style: none;
-			-webkit-padding-start: 0;
-		}
-		.item {
-			position: relative;
-		}
-		.item .content {
-			position: relative;
-			border-bottom: 1px solid #eee;
-			background: #fff;
-			padding: 5px 13px;
-			width: 100%;
-		}
-		.content.animate {
-			transition: margin-left 300ms;
-		}
-		.tool {
-			position: absolute;
-			right: 0;
-			top: 0;
-			background: #fff;
-		}
-		.btn {
-			height: 100%;
-			background: red;
-			border: none;
-			outline: none;
-			padding: 5px 13px;
-			text-align: center;
-			color: #fff;
-		}
+/* ## drawer list */
+.drawer-list {
+	list-style: none;
+	-webkit-padding-start: 0;
+}
+.drawer-item {
+	position: relative;
+	overflow: hidden;
+	display: table;
+	width: 100%;
+}
+.drawer-content {
+	display: table-cell;
+	position: relative;
+	background: #fff;
+	padding: 5px 13px;
+}
+.drawer-content.animate {
+	transition: left 300ms;
+}
+.drawer-tool {
+	display: table-cell;
+	position: absolute;
+	right: 0;
+	top: 0;
+	background: #fff;
+	height: 100%;
+}
 
-		.show {
-		    width: 100%;
-		    display: block;
-		}
+
+
+/**/
+.drawer-content {
+	border-bottom: 1px solid #e6e6e6;
+}
+.btn {
+	height: 100%;
+	border: none;
+	outline: none;
+	background: transparent;
+	padding: 0 10px;
+}
+.remove-btn {
+	background: red;
+	color: #fff;
+}
+.btn:hover, .btn:focus, .btn:active {
+	outline: none;
+}	
 	</style>
+
 </head>
 <body>
-	<ul class="list">
-		<li class="item">
-			<div class="tool"><button class="btn">操作</button></div>
-			<div class="content"><a class="show">列表项</a></div>
+	<ul class="drawer-list">
+		<li class="drawer-item">
+			<div class="drawer-tool">
+                    <button class="btn remove-btn">操作</button>
+			</div>
+			<div class="drawer-content">
+				<a class="show">列表项</a>
+				<div >xxxxx</div>
+			</div>
 		</li>
-		<li class="item">
-			<div class="tool"><button class="btn">操作</button></div>
-			<div class="content"><a class="show">列表项</a></div>
-		</li>
-		<li class="item">
-			<div class="tool"><button class="btn">操作</button></div>
-			<div class="content"><a class="show">列表项</a></div>
+		<li class="drawer-item">
+			<div class="drawer-tool">
+                    <button class="btn remove-btn">操作</button>
+			</div>
+			<div class="drawer-content">
+				<a class="show">列表项</a>
+				<div >xxxxx</div>
+			</div>
 		</li>
 	</ul>
 
@@ -139,95 +158,104 @@
 	</script> -->
 
 	<script type="text/javascript">
-;(function($){
+	;(function($){
 
-	$.fn.drawerList = function(options) {
-		return new MyDrawer(this,options);
-	}
-
-	var MyDrawer = function($el,options) {
-		this.$el = $el;
-		this.init();
-	}
-
-	MyDrawer.prototype.init = function() {
-		var me = this;
-		var $el = this.$el;
-		var _startX;		
-		var _touch;
-		var _slideWidth;
-		var _threshold = 20;
-		var _absoluteX;
-		var $slider;
-
-		$el.on('click','.show',function(e) {
-			console.log('show');
-		});			
-
-		$el.on('touchstart','.item',function (e) {
-			_touch = e.touches[0];
-			_startX = _touch.pageX;
-			_slideWidth = $(e.currentTarget).find('.tool').css('width').replace('px','');
-			$slider = $(e.currentTarget).find('.content');
-
-			me.reset();
-		});
-		$el.on('touchmove','.item',function (e) {
-			var _deltaX;
-			var _currentX;
-
-			_touch = e.touches[0];
-			var 
-			_currentX = _touch.pageX;
-			_deltaX = _currentX - _startX;
-			_absoluteX = Math.abs(_deltaX);
-			if (_deltaX > 0) return;
-			if (_absoluteX > _slideWidth) return;
-			$slider.css('margin-left',_deltaX+'px');
-		});
-		$el.on('touchend','.item',function(e){
-			$slider.addClass('animate');
-			if (_absoluteX < _threshold) {
-				$slider.css('margin-left','0');
-			} else {
-				$slider.css('margin-left','-' + _slideWidth + 'px' ).addClass('unfold');
-				$slider[0].addEventListener('click',stopPropagation,true);
-			}
-
-			$slider.on('webkitTransitionEnd mozTransitionEnd transitionend',function(e) {
-				$(this).removeClass('animate');
-			});
-			_absoluteX = 0;
-			_slideWidth = 0;
-			_startX = 0;
-			_touch = null;
-		});
-
-		$el.on('webkitTransitionEnd mozTransitionEnd transitionend','.unfold',function(e) {
-			var $el = $(e.currentTarget);
-
-			if ($el.css('margin-left').replace('px','') === '0') {
-				$el[0] && $el[0].removeEventListener('click',stopPropagation,true);
-
-				$el.removeClass('unfold');
-			};				
-		});
-
-		function stopPropagation(e) {
-			e.stopPropagation();
-			return false;
+		$.fn.drawerList = function(options) {
+			return new MyDrawer(this,options);
 		}
-	}
 
-	MyDrawer.prototype.reset = function() {
-		var $unfold = $('.item .unfold', this.$el);
-		$unfold.addClass('animate').css('margin-left','0');	
-	}
-  
+		var MyDrawer = function($el,options) {
+			this.$el = $el;
+			this.init();
+		}
 
-})(window.Zepto || window.jQuery);
+		MyDrawer.prototype.init = function() {
+			var me = this;
+			var $el = this.$el;
+			var _startX;		
+			var _touch;
+			var _slideWidth;
+			var _threshold = 20;
+			var _absoluteX;
+			var _deltaX;
+			var $slider;
 
-	$('.list').drawerList();
+			$el.on('click','.show',function(e) {
+				console.log('show');
+			});			
+
+			$el.on('touchstart','.drawer-item',function (e) {
+				_touch = e.touches[0];
+				_startX = _touch.pageX;
+				_slideWidth = $(e.currentTarget).find('.drawer-tool').css('width').replace('px','') || 0;
+				$slider = $(e.currentTarget).find('.drawer-content');
+
+				me.reset();
+			});
+			$el.on('touchmove','.drawer-item',function (e) {
+				
+				var _currentX;
+
+				_touch = e.touches[0];
+				var 
+				_currentX = _touch.pageX;
+				_deltaX = _currentX - _startX;
+				_absoluteX = Math.abs(_deltaX);
+				if (_deltaX > 0) return;
+				if (_absoluteX > _slideWidth) return;
+				$slider.css('left',_deltaX+'px');
+			});
+			$el.on('touchend','.drawer-item',function(e){
+				$slider.addClass('animate');
+				_absoluteX = _absoluteX || 0;
+				if ((_deltaX < 0) && (_absoluteX > _threshold)) {
+					$slider.css('left','-' + _slideWidth + 'px' ).addClass('unfold');
+					// 展开条目内容区，阻止事件向下捕获
+					$slider[0].addEventListener('click',stopPropagation,true);					
+				} else {
+					$slider.css('left','0');
+				}
+
+				$slider.on('webkitTransitionEnd mozTransitionEnd transitionend',function(e) {
+					$(this).removeClass('animate');
+				});
+				_absoluteX = 0;
+				_slideWidth = 0;
+				_startX = 0;
+				_touch = null;
+			});
+
+			
+			$el.on('webkitTransitionEnd mozTransitionEnd transitionend','.unfold',function(e) {
+				var $el = $(e.currentTarget);
+
+				if ($el.css('left').replace('px','') === '0') {
+					$el[0] && $el[0].removeEventListener('click',stopPropagation,true);
+
+					$el.removeClass('unfold');
+				};				
+			});
+
+			// 条目tool区，阻止触摸事件冒泡
+			$('.drawer-tool').on('touchstart touchmove touchend', function(e){
+				e.stopPropagation();
+			})
+
+			function stopPropagation(e) {
+				e.stopPropagation();
+				return false;
+			}
+		}
+
+		MyDrawer.prototype.reset = function() {
+			var $unfold = $('.drawer-item .unfold', this.$el);
+			$unfold.addClass('animate').css('left','0');	
+		}
+	  
+
+	})(window.Zepto || window.jQuery);
+
+	$('.drawer-list').drawerList();
 	</script>
 </body>
 </html>
