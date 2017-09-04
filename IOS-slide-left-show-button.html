@@ -193,7 +193,7 @@
 				me.reset();
 			});
 			$el.on('touchmove','.drawer-item',function (e) {
-				
+				e.preventDefault();
 				var _currentX;
 
 				_touch = e.touches[0];
