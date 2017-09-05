@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>backbone阻止事件冒泡</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style type="text/css">
+		.parent {
+			width: 400px;
+			height: 400px;
+			background: #eee;
+		}
+		.child {
+			width: 200px;
+			height: 200px;
+			background: blue;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="box" id="box">
+		<div class="parent">
+			<div class="child"></div>
+		</div>
+	</div>
+
+	<ul>
+	<li data-id="p1>" data-len="1" data-count="1">
+	    <div class="pro_list_imgbox">
+	        <img src="" width='100' height='100' />
+	    </div>
+	</li>
+	</ul>
+	<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
+	<!-- <script type="text/javascript" src="./lib/jQuery/jquery-git.js"></script> -->
+	<!-- <script type="text/javascript" src="./lib/jQuery/1.12.4/jquery.1.12.4.min.js"></script> -->
+	<script type="text/javascript" src="./lib/underscore/1.8.3/underscore-min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="./lib/backbone/backbone-min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+
+		// var MyView = Backbone.View.extend({
+			
+		// 	events: {	
+		// 		'click .parent': 'clickParent',			
+		// 		'click .child': 'clickChild',
+				
+		// 	},
+		// 	clickParent: function (e) {
+		// 		console.log('parent clicked.')
+		// 	},
+		// 	clickChild: function (e) {
+		// 		console.log(e);
+		// 		e.stopPropagation();
+		// 		console.log('child clicked.')
+		// 		return false;
+		// 	}
+		// });
+		// var myView = new MyView({el:'#box'});
+
+
+		// var V = Backbone.View.extend({
+  //   events: {
+  //       'click .pro_list_imgbox': 'loadPic',
+  //       'click li[data-id]': 'detailHandler'
+  //   },
+
+  //   loadPic: function (e) {
+  //              e.stopPropagation();
+
+  //               console.log('stopped');
+  //       },
+
+  //       detailHandler: function (e) {
+  //           console.log('haha');
+  //       },
+// });
+// var v = new V({el: 'ul'})
+$('#box').on('click','.child', function (e) {
+	e.stopPropagation();
+	console.log('child clicked');
+});
+
+$('#box').on('click','.parent', function (e) {
+	console.log('parent clicked');
+})
+
+
+	</script>
+</body>
+</html>

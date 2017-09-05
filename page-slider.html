@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>页码翻页插件</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="./js/plugins/pageSlider.css">
+
+	<style type="text/css">
+		* {
+			margin:0;
+			box-sizing: border-box;
+		}
+		body {
+	        background: #eee;
+	        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	        font-size: 14px;
+	        color:#000;
+	        margin: 0;
+	        padding: 8px;
+	    }
+	    ul.page-list {
+		    -webkit-margin-before: 0em;
+		    -webkit-margin-after: 0em;
+		    -webkit-margin-start: 0px;
+		    -webkit-margin-end: 0px;
+		    -webkit-padding-start: 0px;
+		}
+
+	</style>
+</head>
+	<div>
+		<h3>功能要求</h3>
+		<ol>
+			<li>滑动翻页区，触摸滑动，滑动过程中，活动框随触摸点滑动，同步显示当前触摸点页码，滑动结束，返回结束点页码。</li>
+			<li>点击翻页区，左侧点击向前翻页，右侧点击向后翻页，第一页时，左侧设置不可点击状态，最后一页时，右侧设置不可点击状态。</li>
+			<li>页码显示区，触摸滑动过程中，同步显示页码。</li>
+		</ol>
+		
+		<h3>实现思路</h3>
+		<ol>
+			<li>
+				<h4>滑动区宽度</h4>
+				<p>最大宽度为容器宽度减去60px；滑动区每一项的宽度最大为30px；</p>
+
+			</li>
+			<li>
+				<h4>滑动翻页区</h4>
+				<p>滑动翻页区，左右留空15px，即当前页标识块宽度一半。</p>
+			</li>
+			<li>
+				<h4>滑动区页码计算</h4>
+				<p>滑动区总长度为L，总页数为n，每一项长度为l=L/n。计算当前触摸点坐标currentX相对于起始点坐标startX偏移为deltaX，deltaX/l取整即为当前页码。</p>
+			</li>
+			<li>
+				<h4>当前页标识块</h4>
+				<p>当前页标识块，跟随触摸点移动。指定页码时，同步滑动块移动。</p>
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+			<li>
+				<h4>翻页区</h4>
+				<p>前一页，后一页。可点击啊状态变更。</p>
+			</li>
+		</ol>
+	</div>
+	<div class="page-slider">
+		<div class="tag-block"></div>
+		<div class="list-box">
+			<ul class="page-list flex">
+			</ul>
+		</div>			
+		<div class="prev disabled">&lt;</div>
+		<div class="next">&gt;</div>
+		<div class="pagination">1</div>		
+	</div>
+<body>
+<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
+<script type="text/javascript" src="./lib/zepto/1.2.0/fx.js"></script>
+<script type="text/javascript" src="./lib/zepto/1.2.0/animate.js"></script>
+<script type="text/javascript" src="./js/plugins/pageSlider.js"></script>
+<script type="text/javascript">
+	var slider = $('.page-slider').pageSlider({
+		count: 10
+	});
+</script>
+</body>
+</html>

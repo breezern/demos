@@ -1,0 +1,97 @@
+.flex {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: box;
+	display: flex;
+	display: -webkit-flex;
+}
+.flex-1 {
+	-webkit-box-flex: 1.0; 
+	-moz-flex: 1;
+	-webkit-flex-grow: 1;
+	box-flex: 1;	
+	flex: 1;	
+}
+.page-slider {
+	position: absolute;
+	bottom: 20px;
+	left: 30px;
+	right: 30px;
+	padding: 0 30px;
+	z-index: 10;
+}
+.prev, .next {
+	position: absolute;
+	top: 0;
+	width: 30px;
+	text-align: center;
+	background: #474747;
+	border: 1px solid #474747;
+	color: #fff;
+	overflow: hidden;
+	line-height: 30px;
+}
+.prev.disabled, .next.disabled {
+	color: #666;
+}
+.prev {
+	left: 0;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+.next {
+	right: 0;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+.list-box {
+	padding-left: 15px;
+	border-top: 1px solid #474747;
+	border-bottom: 1px solid #474747;
+	background: rgba(255, 255, 255, .7);
+}
+.page-list {
+	position: relative;
+	list-style: none;	    	
+	overflow: hidden;
+}
+.page-list li {
+	-webkit-box-flex: 1.0; 
+	-moz-flex: 1;
+	-webkit-flex-grow: 1;
+	box-flex: 1;	
+	flex: 1;
+	text-align: left;
+	line-height: 30px;
+	height: 30px;
+	background: url("../../img/dot.png") left center no-repeat;
+	background-size: 1px 1px;	
+	/*border-right: 1px solid #c3c3c3;    	*/
+}
+.pagination {
+	position: absolute;
+	top: -120px;
+	left: 50%;
+	margin-left: -50px;
+	width: 100px;
+	height: 60px;
+	line-height: 60px;
+	font-size: 20px;
+	background: #7f7f7f;
+	color: #fff;
+	text-align: center;
+	display: none;
+}
+.tag-block {
+	background: rgba(0,0,0,.1) url("../../img/checkbox.png") center center no-repeat;
+	background-size: 5px 5px;
+	width: 30px;
+	height: 30px;
+	border: 1px solid transparent;
+	border-radius: 3px;
+	overflow: hidden;
+	position: absolute;
+    left: 30px;
+    top: 0;
+}
