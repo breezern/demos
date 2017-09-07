@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<title>南航E家</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<style type="text/css">
+body {
+    margin: 0;
+}
+input::-webkit-search-cancel-button {
+    display: none;
+    -webkit-appearance: none;
+}
+.flex {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+    display: -webkit-flex;
+}
+.flex-1 {
+    -webkit-box-flex: 1.0;
+    -moz-flex: 1;
+    -webkit-flex-grow: 1;
+    box-flex: 1;
+    flex: 1;
+}
+.hidden {
+    display: none !important;
+}
+.search-bar {
+    padding: 8px;
+    background: #f5f5f6;
+}
+.search-bar .icon-search-fix {
+    top: 50%;
+    position: absolute;
+    margin-top: -.5em;
+}
+.icon-search-fix {
+    background: url(img/search.png) no-repeat;
+    background-size: cover;
+    width: 1em;
+    height: 1em;
+}
+.search-bar .input-box {
+    position: relative;
+    background: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 0 10px 0 35px;
+    height: 30px;
+}
+.search-bar .input-box .note {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    height: 28px;
+    line-height: 28px;
+    color: #bfbfbf;
+    display: inline-block;
+}
+.search-bar input {
+    position: relative;
+    height: 28px;
+    width: 100%;
+    outline: none;
+    border: none;
+    background: transparent;
+}
+.search-bar .clear-btn {
+    background: #a6a6a6 url(img/x.png) center center no-repeat;
+    background-size: 10px 10px;
+    border: none;
+    border-radius: 100px;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -9px;
+}
+.search-bar .cancel-search-btn {
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    padding-left: 8px;
+}
+
+.btn {
+    border: 1px solid #bfbfbf;
+    border-radius: 5px;
+    padding: 4px 12px;
+    text-align: center;
+    background-color: transparent;
+    outline: none;
+}
+.btn-link {
+    border-color: transparent;
+}
+.text-primary {
+    color: #008cc9 !important;
+}
+
+</style>
+<body>
+<form id="searchForm" action="#">
+    <div class="search-bar flex">
+    
+        <div class="input-box flex-1">                            
+            <div class="note"><span class="icon-search-fix"></span></div>
+            <input autocomplete="off" autocorrect="off" id="searchKey" type="search" name="searchKey" placeholder="搜索">
+            <button type="button" class="clear-btn btn hidden"></span></button>
+        </div>
+        <div class="cancel-box hidden">
+            <button type="button" class="btn btn-link text-primary cancel-search-btn">取消</button>
+        </div>                                                               
+    </div>
+</form>
+
+
+<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
+<script type="text/javascript">
+    // 输入框事件
+    $('#searchKey').on('input',function(e) {
+        checkSearchKey();
+    }).on('search', function(e){
+        e.preventDefault();
+        $('#searchKey').blur(); 
+        return false;
+    }).on('blur', function(e) {
+        var $searchBar = $('.search-bar').removeClass('active');;
+        $('.cancel-box, .clear-btn', $searchBar).addClass('hidden');
+    });
+
+    // 取消
+    $('.cancel-search-btn').on('click', function(e) {
+        $('#searchKey').val('');
+        $('#searchKey').trigger('search');
+        $('#searchKey').blur(); 
+    });
+
+    // 清空
+    $('.clear-btn').on('click', function(e) {
+        $('#searchKey').val('').trigger('focus'); 
+    });
+
+    // 阻止form默认事件
+    $('#searchForm').on('submit', function(e) {
+        e.preventDefault();
+    });
+
+    function checkSearchKey () {
+        var key = $('#searchKey').val();
+        var $searchBar = $('.search-bar');
+        if(key) {
+            $searchBar.addClass('active');
+            $('.cancel-box, .clear-btn', $searchBar).removeClass('hidden'); 
+        } else {
+            $searchBar.removeClass('active');
+            $('.cancel-box, .clear-btn', $searchBar).addClass('hidden');
+        }
+    }
+</script>
+ 	
+</body>

@@ -29,6 +29,7 @@
 
 	</style>
 </head>
+	<a href="http://10.95.36.99:9000/demos/swiper-doc.html">swiper doc</a>
 	<div>
 		<h3>功能要求</h3>
 		<ol>
@@ -63,17 +64,28 @@
 				<h4>翻页区</h4>
 				<p>前一页，后一页。可点击啊状态变更。</p>
 			</li>
+			<li>
+				<h4>页数超50</h4>
+				<p>最多显示50个点，超过50个点处理方式。</p>
+			</li>
+			<li>
+				<h4>触摸事件坐标精度问题</h4>
+				<p>触摸事件的坐标精度为1px，原来的方法中startX，endX，unitWidth都没有取整。所以当{count: 100, startX: 75.34375, endX: 299.67175, unitWidth: 2.272727272727273, …}时，触摸右边界实际为299px，无法滑动到100。取整无法解决这个问题，反而导致count过大时，unitWidth精度减低。换个思路，将endX向上取整，在计算页码时在做修正。</p>
+			</li>
 		</ol>
 	</div>
 	<div class="page-slider">
 		<div class="tag-block"></div>
 		<div class="list-box">
-			<ul class="page-list flex">
+			<ul class="page-list">
 			</ul>
 		</div>			
 		<div class="prev disabled">&lt;</div>
 		<div class="next">&gt;</div>
-		<div class="pagination">1</div>		
+		<div class="pagination">
+			<span>1</span>
+			<div class="arrow"></div>
+		</div>		
 	</div>
 <body>
 <script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
@@ -82,7 +94,7 @@
 <script type="text/javascript" src="./js/plugins/pageSlider.js"></script>
 <script type="text/javascript">
 	var slider = $('.page-slider').pageSlider({
-		count: 10
+		count: 1
 	});
 </script>
 </body>

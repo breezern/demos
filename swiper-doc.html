@@ -7,6 +7,10 @@
 	<link rel="stylesheet" type="text/css" href="./lib/swiper/3.4.2/swiper.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="./js/plugins/pageSlider.css">
     <style>
+    * {
+        margin:0;
+        box-sizing: border-box;
+    }
     html, body {
         position: relative;
         height: 100%;
@@ -84,13 +88,33 @@
     .swiper-slide, .swiper-container {
         background: #4d4d4d;
     }
+    .swiper-slide {
+        padding: 30px 0;
+    }
+    .swiper-slide, .swiper-container {
+        background: #4d4d4d;
+    }
+    .swiper-zoom-container {
+        background: #fff;
+    }
+    .gallery-top .pager {
+        position: absolute;
+        left: initial;
+        right: 0px;
+        bottom: 100px;
+        z-index: 2;
+        width: auto;
+        background: rgba(0,0,0,.4);
+        padding: 5px 8px;
+        color: #fff;
+    }
 
     </style>
 </head>
 <body>
 	<div class="header animate">header</div>
 
-    <div id="swiper" class="swiper-container">
+    <div id="swiper" class="swiper-container gallery-top">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div class="swiper-zoom-container">
@@ -123,11 +147,12 @@
                 </div>
             </div>            
         </div>
+        <div class="pager"></div>
     </div>
     <div class="page-slider">
         <div class="tag-block"></div>
         <div class="list-box">
-            <ul class="page-list flex">
+            <ul class="page-list">
             </ul>
         </div>          
         <div class="prev disabled">&lt;</div>
@@ -140,25 +165,76 @@
 	<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
 	<script type="text/javascript" src="./lib/swiper/3.4.2/swiper.js"></script>
     <script type="text/javascript" src="./js/plugins/pageSlider.js"></script>
+    <script type="text/javascript" src="./js/zeptoTouchFix.js"></script>
 	<script type="text/javascript">
-    var swiper = new Swiper('.swiper-container', {
+    // var swiper = new Swiper('.swiper-container', {
+    //     spaceBetween: 30,
+    //     zoom: true,
+    //     onClick: function (swiper, event) {
+    //         $('.header , .footer').toggleClass('fold');
+    //         $('.page-slider').toggleClass('hidden');
+    //     }
+    // });
+    // swiper.on('onSlideChangeEnd', function () {        
+    //     slider.setPageNumber(swiper.activeIndex);
+    // });
+    // swiper.on('onTouchEnd', function () {        
+    //     slider.setPageNumber(swiper.activeIndex);
+    // });
+    // var slider = $('.page-slider').pageSlider({
+    //     count: 6
+    // });
+    // slider.on('pageNumberChange', function(e, pageNumber){
+    //     swiper.slideTo(pageNumber);
+    // });	
+
+    // $('body').on('tap', function(e) {
+    //     $('.header , .footer').toggleClass('fold');
+    //     $('.page-slider').toggleClass('hidden');
+    // });
+
+    var count = 6;
+
+    var galleryTop = new Swiper('.gallery-top', {
+        zoom: true,
         spaceBetween: 30,
-        zoom: true
+        // onTap: function (swiper, event) {
+        //     // body...
+        //     // console.log('tab');
+        //     event.stopImmediatePropagation();
+        //     $('.foot-container ,.header-container').toggleClass('fold');
+        //     $('.page-slider').toggleClass('hidden');
+        // },
+        preloadImages: false,
+        lazyLoading: true,
+        lazyLoadingInPrevNext: true,
+        lazyLoadingInPrevNextAmount: 2,
+        paginationType: 'fraction',
+        pagination: '.pager',
+        paginationFractionRender: function (swiper, currentClassName, totalClassName) {
+            return '<span class="' + currentClassName + '"></span>' +
+                    '/' +
+                    '<span class="' + totalClassName + '"></span>';
+        }
+    }); 
+    galleryTop.on('onSlideChangeEnd', function () {        
+        slider.setPageNumber(galleryTop.activeIndex);
     });
-    swiper.on('slideChangeEnd', function () {        
-        slider.setPageNumber(swiper.activeIndex);
+    galleryTop.on('onTouchEnd', function () {        
+        slider.setPageNumber(galleryTop.activeIndex);
     });
     var slider = $('.page-slider').pageSlider({
-        count: 6
-    });
+        count: count
+    }); 
     slider.on('pageNumberChange', function(e, pageNumber){
-        swiper.slideTo(pageNumber);
-    });	
+        galleryTop.slideTo(pageNumber);
+    });  
 
-    $('body').on('tap click', function(e) {
+    $('.gallery-top').on('meSingleTap', function() {
         $('.header , .footer').toggleClass('fold');
         $('.page-slider').toggleClass('hidden');
-    });
+    })    
+    
 	</script>
 </body>
 </html>

@@ -14,84 +14,106 @@
 	flex: 1;	
 }
 .page-slider {
-	position: absolute;
+	position: fixed;
 	bottom: 20px;
-	left: 30px;
-	right: 30px;
 	padding: 0 30px;
 	z-index: 10;
 }
-.prev, .next {
+.page-slider .prev, 
+.page-slider .next {
 	position: absolute;
 	top: 0;
 	width: 30px;
 	text-align: center;
-	background: #474747;
-	border: 1px solid #474747;
+	background: rgba(0,0,0,.8);
+	border: 1px solid rgba(0,0,0,.8);
 	color: #fff;
 	overflow: hidden;
 	line-height: 30px;
 }
-.prev.disabled, .next.disabled {
+.page-slider .prev.disabled, 
+.page-slider .next.disabled {
 	color: #666;
 }
-.prev {
+.page-slider .prev {
 	left: 0;
 	border-top-left-radius: 3px;
 	border-bottom-left-radius: 3px;
 }
-.next {
+.page-slider .next {
 	right: 0;
 	border-top-right-radius: 3px;
 	border-bottom-right-radius: 3px;
 }
-.list-box {
+.page-slider .list-box {
 	padding-left: 15px;
 	border-top: 1px solid #474747;
 	border-bottom: 1px solid #474747;
-	background: rgba(255, 255, 255, .7);
+	background: rgba(255, 255, 255, .8);
 }
-.page-list {
+.page-slider .page-list {
 	position: relative;
 	list-style: none;	    	
 	overflow: hidden;
 }
-.page-list li {
-	-webkit-box-flex: 1.0; 
-	-moz-flex: 1;
-	-webkit-flex-grow: 1;
-	box-flex: 1;	
-	flex: 1;
+.page-slider .page-list li {
+	float: left;
 	text-align: left;
 	line-height: 30px;
 	height: 30px;
-	background: url("../../img/dot.png") left center no-repeat;
-	background-size: 1px 1px;	
+	background: url("dot.png") left center no-repeat;
+	background-size: 2px 2px;	
 	/*border-right: 1px solid #c3c3c3;    	*/
 }
-.pagination {
+.page-slider .pagination {
 	position: absolute;
-	top: -120px;
+	top: -70px;
 	left: 50%;
 	margin-left: -50px;
 	width: 100px;
 	height: 60px;
 	line-height: 60px;
 	font-size: 20px;
-	background: #7f7f7f;
+	background: rgba(0,0,0,.7);
+	border-radius: 3px;
 	color: #fff;
 	text-align: center;
 	display: none;
+	opacity: !important;
 }
-.tag-block {
-	background: rgba(0,0,0,.1) url("../../img/checkbox.png") center center no-repeat;
-	background-size: 5px 5px;
-	width: 30px;
+.page-slider .pagination .arrow {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    margin-left: -10px;
+    height: 10px;
+    line-height: 0;
+    opacity: .7;	
+}
+.page-slider .pagination .arrow:before,
+.page-slider .pagination .arrow:after {
+	content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 10px solid #000;
+    border-bottom: none;
+}
+.page-slider .pagination .arrow:before {
+	border-left: 10px solid transparent;
+}
+.page-slider .pagination .arrow:after {
+	border-right: 10px solid transparent;
+}
+.page-slider .tag-block {
+	background: rgba(0,0,0,.3) url("checkbox.png") center center no-repeat;
+	background-size: 10px 10px;
+	width: 32px;
 	height: 30px;
 	border: 1px solid transparent;
 	border-radius: 3px;
 	overflow: hidden;
 	position: absolute;
     left: 30px;
-    top: 0;
+    top: 1px;
 }
