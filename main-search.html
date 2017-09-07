@@ -125,32 +125,39 @@ input::-webkit-search-cancel-button {
     </div>
 </form>
 
-
+<script type="text/javascript" src="./lib/fastclick/fastclick.js"></script>
 <script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
+<script type="text/javascript" src="./js/zeptoTouchFix.js"></script>
+
 <script type="text/javascript">
-    // 输入框事件
-    $('#searchKey').on('input',function(e) {
-        checkSearchKey();
-    }).on('search', function(e){
-        e.preventDefault();
-        $('#searchKey').blur(); 
-        return false;
-    }).on('blur', function(e) {
-        var $searchBar = $('.search-bar').removeClass('active');;
-        $('.cancel-box, .clear-btn', $searchBar).addClass('hidden');
-    });
 
     // 取消
-    $('.cancel-search-btn').on('click', function(e) {
+    $('.cancel-search-btn').on('tap', function(e) {
         $('#searchKey').val('');
         $('#searchKey').trigger('search');
         $('#searchKey').blur(); 
     });
 
     // 清空
-    $('.clear-btn').on('click', function(e) {
+    $('.clear-btn').on('tap', function(e) {
         $('#searchKey').val('').trigger('focus'); 
     });
+
+    // 输入框事件
+    $('#searchKey').on('input' ,function(e) {
+        checkSearchKey();
+    }).on('search' , function(e){
+        e.preventDefault();
+        $('#searchKey').blur(); 
+        return false;
+    }).on('blur' , function(e) {
+        var $searchBar = $('.search-bar').removeClass('active');;
+        $('.cancel-box, .clear-btn', $searchBar).addClass('hidden');
+    }).on('focus' , function(e) {
+        checkSearchKey();
+    });
+
+
 
     // 阻止form默认事件
     $('#searchForm').on('submit', function(e) {
