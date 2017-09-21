@@ -25,15 +25,23 @@
 	top: 0;
 	width: 30px;
 	text-align: center;
-	background: rgba(0,0,0,.8);
-	border: 1px solid rgba(0,0,0,.8);
+	background: rgba(0,0,0,.6);
+	border: 1px solid rgba(0,0,0,.6);
 	color: #fff;
 	overflow: hidden;
 	line-height: 30px;
 }
+.page-slider .prev:active, 
+.page-slider .next:active {
+	opacity: 0.85;
+}
+.page-slider .prev.disabled:active, 
+.page-slider .next.disabled:active {
+	opacity: 1;
+}
 .page-slider .prev.disabled, 
 .page-slider .next.disabled {
-	color: #666;
+	color: #ccc;
 }
 .page-slider .prev {
 	left: 0;

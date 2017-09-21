@@ -6,7 +6,7 @@
 	var MyPageSlider = function($el,options) {
 		if (!options || !options.count || options.count ===1) {
 			$el.hide();
-			return false;
+			// return false;
 		}
 
 		this.$el = $el;

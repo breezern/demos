@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<title>南航E家</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+</head>
+<body>
+	<input id="input" type="text" readonly name="">
+
+	<button class="active">active</button>
+	<button class="disable">disable</button>
+	<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
+	<script type="text/javascript">
+		var $input = $('#input');
+		$('.active').on('click', function (argument) {
+			$input.prop('readonly',false);
+		})
+		$('.disable').on('click', function (argument) {
+			$input.prop('readonly',true);
+		})
+	</script>
+</body>
+</html>
