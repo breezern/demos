@@ -112,6 +112,20 @@
         padding: 5px 8px;
         color: #fff;
     }
+    .prev .btn {
+        background: url("./js/plugins/prev.png") center center no-repeat;
+        background-size: 15px 15px;
+    }
+    .prev.disabled .btn {
+        background-image: url("./js/plugins/prev-disabled.png");
+    }
+    .next .btn {
+        background: url("./js/plugins/next.png") center center no-repeat;
+        background-size: 15px 15px;
+    }
+    .next.disabled .btn {
+        background-image: url("./js/plugins/next-disabled.png");
+    }
 
     </style>
 </head>
@@ -159,8 +173,8 @@
             <ul class="page-list">
             </ul>
         </div>          
-        <div class="prev disabled">&lt;</div>
-        <div class="next">&gt;</div>
+        <div class="prev disabled"><div class="btn">&nbsp;</div></div>
+        <div class="next"><div class="btn">&nbsp;</div></div>
         <div class="pagination">
             <span>1</span>
             <div class="arrow"></div>
