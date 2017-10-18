@@ -2,6 +2,7 @@
 <head>  
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="./css/animate.css">
 <style>
 
 	.header, .footer {
@@ -19,17 +20,29 @@
 	.footer {
 		bottom: 0;
 	}
-	.body {
-
+	body {
+		margin: 0;
+	}
+	.virtual-page {
+	    position: absolute;
+	    top: 0px;
+	    bottom: 0px;
+	    width: 100%; 
+	    overflow-y: auto;
+	}
+	.container {
 	}
 	.sub-page {
-		position: fixed;
+		position: absolute;
 		top: 0;
 		right: 0;
 		bottom: 0;
-		left: 100%;
 		background: #fff;
-
+		z-index: 102;
+	}
+	.fix {
+		height: 100%;
+		overflow: hidden;
 	}
 	.animate {
 		transition: all 300ms;
@@ -37,162 +50,173 @@
 		-webkit-transition: all 300ms;
 		-o-transition: all 300ms;
 	}
+	.hidden {
+		display: none;
+	}
 </style>
 </head>
 <body>
 	<div class="container">
-		<div class="header">header</div>
-		<div class="body">
-			<ul>
-				<li>A</li>
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>4</li>
-				<li>5</li>
-				<li>6</li>
-				<li>7</li>
-				<li>8</li>
-				<li>9</li>
-				<li>0</li>
-			</ul>
-			<ul>
-				<li>B</li>
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>4</li>
-				<li>5</li>
-				<li>6</li>
-				<li>7</li>
-				<li>8</li>
-				<li>9</li>
-				<li>0</li>
-			</ul>
-			<ul>
-				<li>C</li>
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>4</li>
-				<li>5</li>
-				<li>6</li>
-				<li>7</li>
-				<li>8</li>
-				<li>9</li>
-				<li>0</li>
-			</ul>
-			<ul>
-				<li>D</li>
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>4</li>
-				<li>5</li>
-				<li>6</li>
-				<li>7</li>
-				<li>8</li>
-				<li>9</li>
-				<li>0</li>
-			</ul>
-			<ul>
-				<li>E</li>
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>4</li>
-				<li>5</li>
-				<li>6</li>
-				<li>7</li>
-				<li>8</li>
-				<li>9</li>
-				<li>0</li>
-			</ul>
-			<ul>
-				<li>F</li>
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>4</li>
-				<li>5</li>
-				<li>6</li>
-				<li>7</li>
-				<li>8</li>
-				<li>9</li>
-				<li>0</li>
-			</ul>
-			<ul>
-				<li>G</li>
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>4</li>
-				<li>5</li>
-				<li>6</li>
-				<li>7</li>
-				<li>8</li>
-				<li>9</li>
-				<li>0</li>
-			</ul>
-			<ul>
-				<li>H</li>
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>4</li>
-				<li>5</li>
-				<li>6</li>
-				<li>7</li>
-				<li>8</li>
-				<li>9</li>
-				<li>0</li>
-			</ul>
-			<ul>
-				<li>I</li>
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>4</li>
-				<li>5</li>
-				<li>6</li>
-				<li>7</li>
-				<li>8</li>
-				<li>9</li>
-				<li>0</li>
-			</ul>
-			<ul>
-				<li>J</li>
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>4</li>
-				<li>5</li>
-				<li>6</li>
-				<li>7</li>
-				<li>8</li>
-				<li>9</li>
-				<li>0</li>
-			</ul>			
-			
+		<div id="page1" class="virtual-page animated slideInRight" style="z-index: 101;">
+			<div class="fix">
+				<div class="header">header</div>
+				<div class="body">
+					<ul>
+						<li>A</li>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>0</li>
+					</ul>
+					<ul>
+						<li>B</li>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>0</li>
+					</ul>
+					<ul>
+						<li>C</li>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>0</li>
+					</ul>
+					<ul>
+						<li>D</li>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>0</li>
+					</ul>
+					<ul>
+						<li>E</li>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>0</li>
+					</ul>
+					<ul>
+						<li>F</li>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>0</li>
+					</ul>
+					<ul>
+						<li>G</li>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>0</li>
+					</ul>
+					<ul>
+						<li>H</li>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>0</li>
+					</ul>
+					<ul>
+						<li>I</li>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>0</li>
+					</ul>
+					<ul>
+						<li>J</li>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>0</li>
+					</ul>			
+					
+				</div>
+				<div class="footer">
+					<button id="btn" class="button">sub page</button>
+				</div>
+			</div>
+							
 		</div>
-		<div class="footer">
-			<button id="btn" class="button">sub page</button>
+		<div id="page2" class="sub-page virtual-page hidden">
+			<div class="header">header</div>
+			<div>subpage</div>
+			<div class="footer">
+				<button id="backBtn" class="button">back page</button>
+			</div>
 		</div>
 	</div>
-	<div class="sub-page animate">
-		<div class="header">header</div>
-		<div>subpage</div>
-		<div class="footer">
-			<button id="backBtn" class="button">back page</button>
-		</div>
-	</div>
+	
 	<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
 	<script type="text/javascript">
 		$('#btn').on('click', function (e) {
-			$('.sub-page').css('left', '0');
+			$('#page1').addClass('animated slideOutLeft');
+			$('#page2').removeClass('hidden').addClass('animated slideInRight');
 		});
 		$('#backBtn').on('click', function(e) {
-			$('.sub-page').css('left', '100%');
+			$('#page1').removeClass('slideOutLeft').addClass('animated slideInLeft');
+			$('#page2').removeClass('slideInRight').addClass('animated slideOutRight').addClass('hidden');
 		});
 	</script>
 </body>

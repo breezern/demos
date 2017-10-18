@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<title>南航E家</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style type="text/css">
+    	html,body {
+    		height: 100%;
+    	}
+    	body {
+    		margin: 0;
+    		padding: 0;
+    		background: #fff;
+    	}
+    	.dropload-box {
+    		background: #eee;
+    		height: 100%;
+    		overflow-y: auto;
+    		-webkit-overflow-scrolling: touch;
+    	}
+        .red {
+            color: red;
+            background: #eee;
+        }
+        .hidden {
+            display: none;
+        }
+/* ## dropload */
+.dropload-box {
+	height: 100%;
+	overflow-y: auto;
+    
+    position: relative;
+}
+.dropload-container {
+    position: relative;
+    padding-bottom: 50px;
+}
+.dropload-up,.dropload-down{
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    font-size: 12px;
+    /* 开启硬件加速 */
+    -webkit-transform:translateZ(0);
+    transform:translateZ(0);
+}
+.dropload-down{
+    height: 50px;
+    overflow: hidden;
+
+}
+.dropload-refresh,.dropload-update,.dropload-load,.dropload-noData{
+
+    height: 50px;
+    overflow: hidden;
+    line-height: 50px;
+    text-align: center;
+}
+.dropload-load .loading{
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    border-radius: 100%;
+    margin: 6px;
+    border: 2px solid #666;
+    border-bottom-color: transparent;
+    vertical-align: middle;
+    -webkit-animation: rotate 0.75s linear infinite;
+    animation: rotate 0.75s linear infinite;
+}
+.boxer {
+    width: 100px;
+    height: 100px;
+}
+@-webkit-keyframes rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}    	
+    </style>
+</head>
+<body>
+	<div class="dropload-box">
+
+            <ul id="list"></ul>
+	
+	</div>
+<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
+<script type="text/javascript" src="./js/dropload.js"></script>
+<script type="text/javascript">
+	$('.dropload-box').dropload({
+		autoLoad: true,
+		loadUpFn: function (me) {
+			$.ajax({
+                type: 'POST',
+                data: {},
+                url: '/demos/mock/dropload0.json',
+                contentType: 'application/json;charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                	updateList(data.list, 'reload');
+                	me.resetload();
+                },
+                complete: function(xhr, status) {
+
+                }
+            });			
+		},
+		loadDownFn: function (me) {
+			$.ajax({
+                type: 'POST',
+                data: {},
+                url: '/demos/mock/dropload1.json',
+                contentType: 'application/json;charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                	updateList(data.list, 'loadmore');
+                	me.noData();
+                	me.resetload();
+                },
+                complete: function(xhr, status) {
+
+                }
+            });
+		}
+	});
+
+	function updateList(list, type) {
+		var $list = $('#list');
+		var len = list.length;
+		var tpl='';
+		var item;
+
+		for(var i=0;i<len;i++) {
+			item = list[i];
+			tpl += '<li>' + item.name + '</li>' 
+		}
+
+		if (type === 'reload') {
+			$list.html(tpl);
+		} else {
+			$list.append(tpl);
+		}
+	}
+
+</script>
+	
+</body>
+</html>

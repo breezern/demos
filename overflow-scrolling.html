@@ -1,0 +1,87 @@
+<html>
+<head>  
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+	<style type="text/css">
+		body {
+			padding: 0;
+			margin: 0;
+			height: 100%;
+			
+		}
+		.container {
+			position: relative;
+			height: 100%;
+			overflow-y: scroll;
+			z-index: 1;
+			-webkit-overflow-scrolling: touch;
+		}
+		.header, .footer {
+			position: fixed;
+			text-align: center;
+			left: 0;
+			right: 0;
+			line-height: 30px;
+			background: #e6e6e6;
+			z-index: 101;
+		}
+		.header {
+			top: 0;
+		}
+		.footer {
+			bottom: 0;
+		}
+		/*.body {
+			height: 100%;
+			overflow-y: scroll;
+			-webkit-overflow-scrolling: touch;
+		}*/
+		li {
+			line-height: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="header">header</div>
+		<div class="body">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+				<li>10</li>
+				<li>11</li>
+				<li>12</li>
+			</ul>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+				<li>10</li>
+				<li>11</li>
+				<li>12</li>
+			</ul>
+		</div>
+		<div class="footer">footer</div>
+	</div>
+
+	<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
+	<script type="text/javascript">
+		$('.container').on('touchstart', function (e) {
+			// body...
+		})
+	</script>
+</body>
+</html>

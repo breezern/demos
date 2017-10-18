@@ -219,13 +219,13 @@
     var galleryTop = new Swiper('.gallery-top', {
         zoom: true,
         spaceBetween: 30,
-        // onTap: function (swiper, event) {
-        //     // body...
-        //     // console.log('tab');
-        //     event.stopImmediatePropagation();
-        //     $('.foot-container ,.header-container').toggleClass('fold');
-        //     $('.page-slider').toggleClass('hidden');
-        // },
+        onTap: function (swiper, event) {
+            // body...
+            // console.log('tab');
+            event.stopImmediatePropagation();
+            $('.header , .footer').toggleClass('fold');
+            $('.page-slider').toggleClass('hidden');
+        },
         preloadImages: false,
         lazyLoading: true,
         lazyLoadingInPrevNext: true,
@@ -253,10 +253,10 @@
         $('#swiper .swiper-wrapper').addClass('no-transition');
     });  
 
-    $('.gallery-top').on('meSingleTap', function() {
-        $('.header , .footer').toggleClass('fold');
-        $('.page-slider').toggleClass('hidden');
-    })    
+    // $('.gallery-top').on('meSingleTap', function() {
+    //     $('.header , .footer').toggleClass('fold');
+    //     $('.page-slider').toggleClass('hidden');
+    // })    
     
 	</script>
 </body>

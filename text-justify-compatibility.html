@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+	<title>text-align:justify兼容性</title>
+	<style type="text/css">
+		.justify {
+		    display: inline-block;
+		    width: auto;
+		    text-align: justify;
+		    min-width: 4em;
+		    word-break: break-all;
+		    height: 1.5em;
+		    overflow: hidden;
+		}
+		.justify:after {
+		    content: "";
+		    display: inline-block;
+		    width: 100%;
+		    height: 0;
+		    overflow: hidden;
+		}		
+	</style>
+</head>
+<body>
+	<div class="justify">
+		函题
+	</div>
+	
+</body>
+</html>
