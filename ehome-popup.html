@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>	</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="./css/icomoon/style.css">
+	<link rel="stylesheet" type="text/css" href="./js/popup/popup.css">
+</head>
+<body>
+	
+	<ul>
+		<li>
+			<h3>alert</h3>
+<pre>$.utils.alert({
+	iconClass: String, //图标
+	msg: String, //信息
+	time: Number, //停留时间
+	callback: Function, //消失后的回调
+})</pre>
+		</li>
+		<li>
+			<h3>warn</h3>
+<pre>$.utils.warn({
+	title: '提示',
+	msg: '主体信息',
+	hint: '辅助信息',
+	hasCloseBtn: true,
+	onConfirm: function() {
+
+	}
+})</pre>
+		</li>
+		<li>
+			<h3>confirm</h3>
+<pre>$.utils.confirm({
+	title: '提示',
+	msg: '主体信息',
+	hint: '辅助信息',
+	hasCloseBtn: true,
+	confirmBtnStr: '是',
+	cancelBtnStr: '否',
+	onConfirm: function() {
+
+	},
+	onCancel: function() {
+
+	}
+})</pre>
+		</li>
+		<li>
+			<h3>loading</h3>
+<pre>$.utils.loading.show()</pre>
+<pre>$.utils.loading.hide()</pre>
+		</li>
+	</ul>
+	<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
+	<script type="text/javascript" src="./lib/zepto/1.2.0/fx.js"></script>
+	<script type="text/javascript" src="./lib/zepto/1.2.0/animate.js"></script>
+	<script type="text/javascript" src="./js/popup/popup.js"></script>
+</body>
+</html>

@@ -18,12 +18,20 @@
     	.dropload-box {
     		background: #eee;
     		height: 100%;
+            z-index: 1;
     		overflow-y: auto;
     		-webkit-overflow-scrolling: touch;
     	}
         .red {
             color: red;
             background: #eee;
+        }
+        .fixed {
+            position: fixed;
+            top: 0;
+            right: 0;
+            font-size: 60px;
+            z-index: 100;
         }
         .hidden {
             display: none;
@@ -101,14 +109,19 @@
     </style>
 </head>
 <body>
+    <div id="target" class="fixed"></div>
 	<div class="dropload-box">
 
-            <ul id="list"></ul>
-	
+            <ul id="list"></ul>	
 	</div>
 <script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
 <script type="text/javascript" src="./js/dropload.js"></script>
 <script type="text/javascript">
+    var n = 0;
+    $('.dropload-box').on('scroll', function () {
+        
+        $('#target').html(n++%10);
+    });    
 	$('.dropload-box').dropload({
 		autoLoad: true,
 		loadUpFn: function (me) {

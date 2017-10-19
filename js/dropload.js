@@ -1,11 +1,3 @@
-/**
- * dropload
- * 西门(http://ons.me/526.html)
- * 0.9.1(161205)
- */
-
-
-
 ;(function($){
     'use strict';
     var win = window;
@@ -383,5 +375,3 @@
         });
     }
 })(window.Zepto || window.jQuery);
-
-
