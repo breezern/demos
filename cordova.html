@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+</head>
+<body>
+	<button type="button" id="gotoModule">跳转模块</button>	
+	<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
+	<script type="text/javascript">
+		if (navigator.userAgent.toLowerCase().indexOf("iphone") != -1 || navigator.userAgent.toLowerCase().indexOf("ipad") != -1)
+            document.write("<script src=\"js/cordova/cordova_ios.js\">" + "</scr" + "ipt>");
+        else {
+            document.write("<script src=\"js/cordova/cordova_android.js\">" + "</scr" + "ipt>");
+        }
+
+		$('#gotoModule').on('click', function (e) {
+			try {
+                cordova.exec(
+                    function (data) {
+                        alert("success:");
+                        // me.closeCurrentWebview();
+                    },
+                    function (err) {
+                        //TODO 模块跳转失败后的提示
+                        alert("打开待办事项失败(L1)");
+                        //alert("打开待办事项失败(L1)：" + err);
+                    },
+                    "GoToModule",
+                    "goToModule",
+                    ['{"identifier":"' + 'com.csair.oa.mybox' + '","param":"' + 'srcpagetype=' + '", "enterDirection":"'+ 'right' +'"}']);
+
+                // this.closeCurrentWebview();
+            }
+            catch (e) {
+                alert("打开待办事项失败(L2)：" + e);
+                //TODO 模块跳转失败后的提示
+            }
+		})
+	</script>
+</body>
+</html>
