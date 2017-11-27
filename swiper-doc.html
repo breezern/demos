@@ -70,10 +70,14 @@
     	left: 0;
     	right: 0;
     	z-index: 800;
-        overflow: hidden;
+        /*overflow: hidden;*/
     	background: #f2f2f2;
     }
-    .header.fold, .footer.fold {
+    .header.fold {
+        transform: translateY(-50px);
+        -webkit-transform: translateY(-50px);
+    }
+    .footer.fold {
         height: 0;
     }
     .page-slider {
@@ -184,6 +188,7 @@
     <div class="footer animate">footer</div>
 
 	<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
+    <!-- <script type="text/javascript" src="./lib/jQuery/1.12.4/jquery.1.12.4.min.js"></script> -->
 	<script type="text/javascript" src="./lib/swiper/3.4.2/swiper.js"></script>
     <script type="text/javascript" src="./js/plugins/pageSlider.js"></script>
     <script type="text/javascript" src="./js/zeptoTouchFix.js"></script>
@@ -219,12 +224,17 @@
     var galleryTop = new Swiper('.gallery-top', {
         zoom: true,
         spaceBetween: 30,
-        onTap: function (swiper, event) {
+        onClick: function (swiper, event) {
             // body...
             // console.log('tab');
-            event.stopImmediatePropagation();
+            // event.stopImmediatePropagation();
             $('.header , .footer').toggleClass('fold');
             $('.page-slider').toggleClass('hidden');
+        },
+        onDoubleTap: function (swiper, event) {
+            // body...
+            // console.log('tab');
+            console.log('xxxx')
         },
         preloadImages: false,
         lazyLoading: true,

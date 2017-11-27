@@ -18,11 +18,10 @@
 			var _threshold = 20;
 			var _absoluteX, _absoluteY;
 			var _deltaX, _deltaY;
-			var direction;
+			var direction = null;
 			var $slider;
 
-			// 禁止滚动
-			$el.on('touchmove', preventDefault);		
+					
 
 			$el.on('touchstart','.drawer-content',function (e) {
 				_touch = e.touches[0];
@@ -47,27 +46,30 @@
 				_absoluteY = Math.abs(_deltaY);
 
 
-				// 判断是垂直滚动还是左右滑动
-				if (_absoluteX<5 && _absoluteY<5) {
-					direction = null;
-					return;
-				} else {
-					direction = _absoluteX/_absoluteY>1 ?  'horizontal' : 'vertical';
+				// 方向是否确定
+				if (!direction) {
+					// 判断是垂直滚动还是左右滑动
+					if (_absoluteX<5 && _absoluteY<5) {
+						direction = null;
+						return;
+					} else {
+						direction = _absoluteX/_absoluteY>1 ?  'horizontal' : 'vertical';
 
-					if (direction === 'vertical') {
-						$el.off('touchmove', preventDefault);
-					} else if (direction === 'horizontal') {
-						if (_deltaX > 0) return;
-						if (_absoluteX > _slideWidth) return;
-						$slider.css('left',_deltaX+'px');
-					}	
-				}			
+						if (direction === 'horizontal') {
+							// 水平时，禁止滚动
+							$el.on('touchmove', preventDefault);
+						}						
+					}
+				} else if(direction === 'horizontal') {					
+					if (_deltaX > 0) return;
+					if (_absoluteX > _slideWidth) return;
+					$slider.css('left',_deltaX+'px');					
+				}								
 			});
 			$el.on('touchend','.drawer-content',function(e){
-				// 垂直时，触发滚动
-				if (direction === 'vertical') {
-					$el.on('touchmove', preventDefault);
-				} else {
+				if (direction === 'horizontal') {
+					$el.off('touchmove', preventDefault);
+
 					// 水平时，处理滑动
 					$slider.addClass('animate');
 					_absoluteX = _absoluteX || 0;

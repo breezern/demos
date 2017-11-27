@@ -1816,7 +1816,7 @@ function injectPluginScript(pathPrefix) {
 function findCordovaPath() {
     var path = null;
     var scripts = document.getElementsByTagName('script');
-    var term = 'cordova_android.js';
+    var term = 'cordova.js';
     for (var n = scripts.length-1; n>-1; n--) {
         var src = scripts[n].src;
         if (src.indexOf(term) == (src.length - term.length)) {

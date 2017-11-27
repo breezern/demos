@@ -8,6 +8,7 @@
 <body>
 	<button type="button" id="gotoModule">跳转模块</button>	
 	<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
+    <!-- <script type="text/javascript" src="js/cordova-ehome/cordova.js"></script> -->
 	<script type="text/javascript">
 		if (navigator.userAgent.toLowerCase().indexOf("iphone") != -1 || navigator.userAgent.toLowerCase().indexOf("ipad") != -1)
             document.write("<script src=\"js/cordova/cordova_ios.js\">" + "</scr" + "ipt>");
@@ -29,7 +30,7 @@
                     },
                     "GoToModule",
                     "goToModule",
-                    ['{"identifier":"' + 'com.csair.oa.mybox' + '","param":"' + 'srcpagetype=' + '", "enterDirection":"'+ 'right' +'"}']);
+                    ['{"identifier":"' + 'com.csair.oa.mybox' + '","param":"' + 'srcpagetype=MyComleteJob' + '", "enterDirection":"'+ 'right' +'"}']);
 
                 // this.closeCurrentWebview();
             }
@@ -38,6 +39,34 @@
                 //TODO 模块跳转失败后的提示
             }
 		})
+
+        function parentFun(str) {
+            alert(str);
+            try {
+                cordova.exec(
+                    function (data) {
+                        alert("success:");
+                        // me.closeCurrentWebview();
+                    },
+                    function (err) {
+                        //TODO 模块跳转失败后的提示
+                        alert("打开待办事项失败(L1)");
+                        //alert("打开待办事项失败(L1)：" + err);
+                    },
+                    "GoToModule",
+                    "goToModule",
+                    ['{"identifier":"' + 'com.csair.oa.mybox' + '","param":"' + 'srcpagetype=' + '", "enterDirection":"'+ 'right' +'"}']);
+
+                // this.closeCurrentWebview();
+            }
+            catch (e) {
+                alert("打开待办事项失败(L2)：" + e);
+                //TODO 模块跳转失败后的提示
+            }
+        }
 	</script>
+
+
+    <iframe src="cordova_iframe.html"></iframe>
 </body>
 </html>
