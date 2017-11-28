@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+</head>
+<body>
+	<button type="button" id="gotoModule">跳转模块</button>	
+	<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
+    <!-- <script type="text/javascript" src="js/cordova-ehome/cordova.js"></script> -->
+	<script type="text/javascript">
+
+
+		$('#gotoModule').on('click', function (e) {
+			window.parent.parentFun('frome iframe');
+		})
+	</script>
+
+</body>
+</html>
