@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>fixed与aminate</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+	<style type="text/css">
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		* {
+			box-sizing: border-box;
+		}
+		.fixed {
+			position: fixed;
+			bottom: 50px;
+			left: 0;
+			right: 0;
+			background: #999;
+		}
+		.page {
+			/*background: #fff;*/
+			height: 110%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			padding-top: 100px;
+		}
+		.hiden {
+			display: none;
+		}
+
+		.animated {
+		  animation-duration: .5s;
+		  animation-fill-mode: both;
+		}
+		@keyframes bgchange {
+		  from {
+		    background-color: #000000;
+		    visibility: visible;
+		  }
+
+		  to {
+		  	background-color: #ffffff;
+		  }
+		}
+		.bgchange {
+		  animation-name: bgchange;
+		}
+		@keyframes slideInLeft {
+		  from {
+		    transform: translate3d(-100%, 0, 0);
+		    visibility: visible;
+		  }
+
+		  to {
+		    transform: translate3d(0, 0, 0);
+		  }
+		}
+
+		.slideInLeft {
+		  animation-name: slideInLeft;
+		}
+
+		@keyframes slideInRight {
+		  from {
+		    transform: translate3d(100%, 0, 0);
+		    visibility: visible;
+		  }
+
+		  to {
+		    transform: translate3d(0, 0, 0);
+		  }
+		}
+
+		.slideInRight {
+		  animation-name: slideInRight;
+		}
+		@keyframes slideOutLeft {
+		  from {
+		    transform: translate3d(0, 0, 0);
+		  }
+
+		  to {
+		    visibility: hidden;
+		    transform: translate3d(-100%, 0, 0);
+		  }
+		}
+
+		.slideOutLeft {
+		  animation-name: slideOutLeft;
+		}
+
+		@keyframes slideOutRight {
+		  from {
+		    transform: translate3d(0, 0, 0);
+		  }
+
+		  to {
+		    visibility: hidden;
+		    transform: translate3d(100%, 0, 0);
+		  }
+		}
+
+		.slideOutRight {
+		  animation-name: slideOutRight;
+		}
+
+	</style>
+</head>
+<body class="">
+	
+	<div id="page1" class="animated page slideInLeft">
+		<p>元素执行css animate时，内部fixed元素定位异常。</p>
+		<h3>问题描述</h3>
+		<p>父元素parent，子元素child，parent定义了位置属性的css动画，child定位方式为fixed。则child元素的fixed会相对于parent，而不是viewport</p>
+		<ul>
+			<li>css属性是位置相关的属性，如果是background，则没有问题。</li>
+		</ul>
+		<button id="btn1">show page2</button>
+		<h3>处理方法</h3>
+		<ul>
+			<li>将fixed元素放到parent外侧</li>
+			<li>parent模拟viewport，即设定parent和viewport完全重合，那么看起来child也就是相对于viewport定位。而parent内部超过viewport的部分可以通过overflow滑动实现。</li>
+		</ul>
+		<div class="fixed">footer1</div>
+	</div>	
+	<!-- <div id="page2" class="animated page hiden">
+		<button id="btn2">show page1</button>
+		<div class="fixed">footer2</div>
+	</div> -->
+
+	<script type="text/javascript">
+		var page1 = document.querySelector('#page1')
+		var page2 = document.querySelector('#page2')
+		var btn1 = document.querySelector('#btn1')
+		var btn2 = document.querySelector('#btn2')
+
+		btn1.addEventListener('click', function (e) {
+			page1.className = 'page animated '
+			page2.className = 'page animated '
+		})
+		btn2 && btn2.addEventListener('click', function (e) {
+			page1.className = 'page animated '
+			page2.className = 'page animated '
+		})
+
+		page1.ad
+	</script>
+</body>
+</html>

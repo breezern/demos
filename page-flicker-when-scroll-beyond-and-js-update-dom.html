@@ -4,12 +4,19 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
 	<style type="text/css">
+		body {
+			padding: 0;
+			margin: 0;
+		}
 		.container {
 			position: relative;
 			height: 100%;
 			overflow-y: scroll;
 			z-index: 1;
 			-webkit-overflow-scrolling: touch;
+		}
+		.body {
+			border: 1px solid transparent;
 		}
 		li {
 			line-height: 50px;
@@ -65,11 +72,13 @@
 			</ul>
 			<br><br><br>
 		</div>
-		<div id="target"></div>		
+		<div id="target">1</div>		
 	</div>
 
 	<script type="text/javascript" src="./lib/zepto/1.2.0/zepto.js"></script>
 	<script type="text/javascript">
+		console.log($('.container').offset());
+		console.log($('.body').offset());
 		var n = 0;
 		$('.container').on('touchstart', function(e){
 			// e.stopPropagation()
@@ -78,10 +87,20 @@
 	  //       }
 
 	  //       var a = e.touches[0].pageY;
+		}).on('touchmove', function(e){
+			//e.preventDefault();
 		});
 		$('.container').on('scroll', function () {
 			
+
+			var maxScrollTop = $('.body').offset().height + $('#target').offset().height - $('.container').offset().height;
+
+			if ($('.container').scrollTop() > maxScrollTop) return;
+
+
+			console.log('<' + $('.container').scrollTop())
 			$('#target').html(n++%10);
+			console.log('>' +  $('.container').scrollTop())
 		});
 	</script>
 </body>

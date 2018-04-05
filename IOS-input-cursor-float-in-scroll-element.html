@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IOS 回弹滚动元素内输入框光标闪动</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+
+	<style type="text/css">
+		html,body {
+			height: 100%;
+		}
+		.header {
+			position: fixed;
+			top:0;
+			left: 0;
+			right: 0;
+			text-align: center;
+			background: #999;
+			z-index: 900;
+			/*transform: translateZ(0);
+		    -moz-transform: translatez(0);
+		    -ms-transform: translatez(0);
+		    -o-transform: translatez(0);
+		    -webkit-transform: translateZ(0);*/
+		}
+		.container {
+			height: 100%;
+			width: 300px;
+			background: #eee;
+			overflow-y: auto;
+    		-webkit-overflow-scrolling: touch;
+		}
+		.placeholder {
+			height: 600px;
+		}
+	</style>
+</head>
+<body>
+	<header class="header">header</header>
+	<div class="container">
+		<div class="placeholder"></div>
+		<input type="text" name="">
+		<div class="placeholder"></div>
+	</div>
+
+</body>
+</html>
