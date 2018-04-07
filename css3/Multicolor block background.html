@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>多色块背景</title>
+  <style type="text/css">
+  	.box {
+  		width: 100px;
+  		height: 100px;
+
+  	}
+  	.color-2 {
+  		background: linear-gradient(90deg, #aa2350, #aa2350 50%, #002350 50%, #002350 100%);
+		  background-repeat: no-repeat;
+  	}
+  	.color-3 {
+  		background: linear-gradient(90deg, #aa2350, #aa2350 33.3%, #aabb50 33.3%,  #aabb50 66.6%, #aabbcc 66.6%,#aabbcc 100%);
+		  background-repeat: no-repeat;
+  	}
+  	.color-4 {
+  		background: linear-gradient(0deg, #aa2350, #aa2350 50%, #aabb50 50%, #aabb50)
+        right, linear-gradient(0deg, #aa23cc, #aa23cc 50%, #aabbcc 50%, #aabbcc)
+        left;
+		  background-size: 50% 100%;
+		  background-repeat: no-repeat;
+  	}
+  </style>
+</head>
+
+<body>
+  <h1>多色块背景</h1>
+  <p>首先想到是<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Background_and_Borders/Using_CSS_multiple_backgrounds">css3的多背景</a>，看看能否直接通过背景色指定，然而文档中明确说了，仅最后一个背景允许拥有背景色</p>
+  <ul>
+    <li>
+      <h3>双色快背景</h3>
+      <div class="box color-2"></div>
+    </li>
+    <li>
+    	<h3>三色块</h3>
+    	<div class="box color-3"></div>
+    </li>
+    <li>
+    	<h3>四色块</h3>
+    	<div class="box color-4"></div>
+    </li>
+  </ul>
+</body>
+
+</html>
